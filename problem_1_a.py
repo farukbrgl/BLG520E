@@ -42,24 +42,67 @@ f_occurs_multi = open("occurs_multi.txt", "w")
 # print(indices, "GJV")
 
 pattern_list = []
-for i in range(2997):
-    pattern_ = text_line[i] + text_line[i + 1] + text_line[i + 2]
-    if pattern_ in pattern_list:
-        pass
-    else:
-        pattern_list.append(pattern_)
+for j in range(3, 12):
+    for i in range(3000 - j):
+        if j == 3:
+            pattern_ = text_line[i] + text_line[i + 1] + text_line[i + 2]
+        elif j == 4:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3]
+        elif j == 5:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + text_line[i + 4]
+        elif j == 6:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5]
+        elif j == 7:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5] + text_line[i + 6]
+        elif j == 8:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5] + \
+                text_line[i + 6] + text_line[i + 7]
+        elif j == 9:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5] + \
+                text_line[i + 6] + text_line[i + 7] + text_line[i + 8]
+        elif j == 10:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5] + text_line[i + 6] + \
+                text_line[i + 7] + text_line[i + 8] + text_line[i + 9]
+        elif j == 11:
+            pattern_ = text_line[i] + text_line[i + 1] + \
+                text_line[i + 2] + text_line[i + 3] + \
+                text_line[i + 4] + text_line[i + 5] + text_line[i + 6] + \
+                text_line[i + 7] + text_line[i + 8] + \
+                text_line[i + 9] + text_line[i + 10]
+
+        if pattern_ in pattern_list:
+            pass
+        else:
+            pattern_list.append(pattern_)
+
+
+print(pattern_list)
+print(len(pattern_list))
 
 for pattern in pattern_list:
-    # pattern = text_line[i] + text_line[i + 1] + text_line[i + 2]
+    # print(pattern)
+    #     # pattern = text_line[i] + text_line[i + 1] + text_line[i + 2]
     indices_object = (re.finditer(pattern, (text_line)))
     indices = [index.start() for index in indices_object]
-    pattern_list.append(pattern)
-    # print(pattern, indices)
-
-    # all indices can be seen by uncomment below line
-    # and comment if block after that
-    # f_occurs_all.write(pattern + str(indices) + "\n")
-
+#     pattern_list.append(pattern)
+#     # print(pattern, indices)
+#
+#     # all indices can be seen by uncomment below line
+#     # and comment if block after that
+#     # f_occurs_all.write(pattern + str(indices) + "\n")
+#
     if len(indices) > 1:
         spacing = indices[1] - indices[0]
         f_occurs_multi.write(pattern + " " + str(spacing) + " "
