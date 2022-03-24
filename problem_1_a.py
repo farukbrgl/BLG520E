@@ -1,5 +1,5 @@
 import re
-import math
+# import math
 from sympy import divisors
 
 letters_to_numbers = {
@@ -9,6 +9,11 @@ letters_to_numbers = {
     "S": "18", "T": "19", "U": "20", "V": "21", "W": "22", "X": "23",
     "Y": "24", "Z": "25"
 }
+
+letters_list = [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+]
 
 l_n = letters_to_numbers
 
@@ -20,7 +25,7 @@ for line in f_ciphertext.readlines():
         if c == "\n":
             pass
         else:
-            print(l_n[c], c)
+            # print(l_n[c], c)
             f_ciphertext_to_numbers.write(str(l_n[c]) + "\n")
             # f_ciphertext_to_numbers.write(str(c) + ": " + str(l_n[c]) + "\n")
             f_ciphertext_one_line.write(str(c))
@@ -89,8 +94,8 @@ for j in range(3, 12):
             pattern_list.append(pattern_)
 
 
-print(pattern_list)
-print(len(pattern_list))
+# print(pattern_list)
+# print(len(pattern_list))
 factors_list = []
 for pattern in pattern_list:
     # print(pattern)
@@ -134,4 +139,82 @@ for string in factors_list:
         o = o + 1
     p = p + 1
 search_list.sort()
-print(search_list)
+count_dict = {}
+# print(search_list)
+ab = 0
+for k in range(1, len(search_list)):
+    counter = 0
+    search_number = search_list[k]
+    for lm in range(len(factors_list)):
+        if search_number in factors_list[lm]:
+            counter = counter + 1
+    count_dict.update({search_number: counter})
+    # count_list.append(counter)
+
+count_dict_sorted = dict(
+    sorted(count_dict.items(), key=lambda x: x[1], reverse=True))
+# print(count_dict_sorted)
+
+
+def beaufort(key, pt):
+    if key > pt:
+        ct = key - pt
+    elif pt > key:
+        ct = key - pt + 26
+    return ct
+
+
+def beaufort_reverse(key, ct):
+    if key > ct:
+        pt = key - ct
+    elif ct > key:
+        pt = key - ct + 26
+    return pt
+
+
+def frequency_show(ct):
+    freq_count_dict = {}
+    # print(search_list)
+    for k in range(len(letters_list)):
+        counter = 0
+        search_letter = letters_list[k]
+        counter = ct.count(search_letter)
+        freq_count_dict.update({search_letter: counter})
+
+    freq_count_dict_sorted = dict(
+        sorted(freq_count_dict.items(), key=lambda x: x[1], reverse=True))
+
+    print(freq_count_dict_sorted)
+    return freq_count_dict_sorted
+
+
+ct_k1 = []
+ct_k2 = []
+ct_k3 = []
+ct_k4 = []
+ct_k5 = []
+f_ciphertext_one_line = open("ciphertext_one_line.txt", "r")
+line = f_ciphertext_one_line.readline()
+i = 0
+for i in range(int(len(line) / 5)):
+    ct_k1.append(line[5 * i + 0])
+    ct_k2.append(line[5 * i + 1])
+    ct_k3.append(line[5 * i + 2])
+    ct_k4.append(line[5 * i + 3])
+    ct_k5.append(line[5 * i + 4])
+# print(ct_k1)
+# print(ct_k2)
+# print(ct_k3)
+# print(ct_k4)
+# print(ct_k5)
+
+f_ciphertext_one_line.close()
+
+freq_dict_k1 = frequency_show(ct_k1)
+freq_dict_k2 = frequency_show(ct_k2)
+freq_dict_k3 = frequency_show(ct_k3)
+freq_dict_k4 = frequency_show(ct_k4)
+freq_dict_k5 = frequency_show(ct_k5)
+
+# ct =
+# def frequency_analysis(freq_count_dict):
