@@ -10,18 +10,61 @@ letters_to_numbers = {
     "Y": "24", "Z": "25"
 }
 
+lndkl = list(letters_to_numbers.keys())
+lndvl = list(letters_to_numbers.values())
+
 letters_list = [
     "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
     "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
 ]
+
+pt = 0
+
+
+def beaufort_reverse(key, ct):
+    pt = 0
+    if key > ct:
+        pt = key - ct
+    elif ct > key:
+        pt = key - ct + 26
+    return pt
+
+
+# to_dictionary = {"Bulgaria": 450, "Australia": 610, "Canada": 916}
+#
+# new_ke_lis = list(to_dictionary.keys())
+# new_val = list(to_dictionary.values())
+#
+# new_pos = new_val.index(610)  # value from dictionary
+# print("Get a key by value:", new_ke_lis[new_pos])
+
 
 l_n = letters_to_numbers
 f_plaintext = open("plaintext_decry.txt", "w")
 f_ciphernumbers = open("ciphernumbers.txt", "r")
 line_number = 0
 for line in f_ciphernumbers.readlines():
-    if line_number == (5 * line_number + 0):
-        print(line)
+    if line_number % 5 == 0:
+        p_t = beaufort_reverse(7, int(line))
+        letter_p_t = lndkl[lndvl.index(str(p_t))]
+        f_plaintext.write(letter_p_t)
+    elif line_number % 5 == 1:
+        p_t = beaufort_reverse(0, int(line))
+        letter_p_t = lndkl[lndvl.index(str(p_t))]
+        f_plaintext.write(letter_p_t)
+    elif line_number % 5 == 2:
+        p_t = beaufort_reverse(12, int(line))
+        letter_p_t = lndkl[lndvl.index(str(p_t))]
+        f_plaintext.write(letter_p_t)
+    elif line_number % 5 == 3:
+        p_t = beaufort_reverse(3, int(line))
+        letter_p_t = lndkl[lndvl.index(str(p_t))]
+        f_plaintext.write(letter_p_t)
+    elif line_number % 5 == 4:
+        p_t = beaufort_reverse(8, int(line))
+        letter_p_t = lndkl[lndvl.index(str(p_t))]
+        f_plaintext.write(letter_p_t)
+
     line_number = line_number + 1
 
 
@@ -31,11 +74,3 @@ def beaufort(key, pt):
     elif pt > key:
         ct = key - pt + 26
     return ct
-
-
-def beaufort_reverse(key, ct):
-    if key > ct:
-        pt = key - ct
-    elif ct > key:
-        pt = key - ct + 26
-    return pt
