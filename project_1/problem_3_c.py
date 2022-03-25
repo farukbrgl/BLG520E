@@ -93,10 +93,17 @@ for j in range(3, 12):
         else:
             pattern_list.append(pattern_)
 
+f_pattern_list = open("p3_pattern_list.txt", "w")
+f_pattern_list.write(str(pattern_list))
+
+f_pattern_list.close()
 
 # print(pattern_list)
 # print(len(pattern_list))
 factors_list = []
+f_occurs_multi.write("Pattern" + " | " + "occurs" + " | " + "spacing" + " | "
+                     + "factors")
+
 for pattern in pattern_list:
     # print(pattern)
     #     # pattern = text_line[i] + text_line[i + 1] + text_line[i + 2]
@@ -112,9 +119,9 @@ for pattern in pattern_list:
     if len(indices) > 1:
         spacing = indices[1] - indices[0]
         f_factors.write(str(divisors(spacing)) + "\n")
-        # f_occurs_multi.write(pattern + " " + str(spacing) + " "
-        #                      + str(divisors(spacing)) + " "
-        #                      + str(indices) + "\n")
+        f_occurs_multi.write(pattern + " " + str(indices) + " " + str(spacing) + " "
+                             + str(divisors(spacing)) + " "
+                             + "\n")
         factors_list.append(divisors(spacing))
     else:
         pass
