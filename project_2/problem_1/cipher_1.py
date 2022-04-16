@@ -1,4 +1,4 @@
-import key_schedule
+from key_schedule import key_schedule
 
 
-key_schedule(0xffaf)
+key_schedule(0xffff)
