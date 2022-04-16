@@ -42,7 +42,7 @@ def sbox_1(key):
 
         key_next = key_next + key_temp
     key_next_hex = int(key_next, 16)
-    print(hex(key_next_hex))
+    # print(hex(key_next_hex))
     return key_next_hex
 
 
