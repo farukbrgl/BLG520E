@@ -1,10 +1,10 @@
-def sbox_1():
-    key = 0xabcd
+def sbox_1(key):
+    # key = 0xabcd
     str_key = str(hex(key)[2:].zfill(4))
     # key_list = list(map(str, str(hex(key)[2:].zfill(4))))
     letter_list = "0123456789abcdef"
     key_next = ""
-    print(str_key)
+    # print(str_key)
 
     for i in range(4):
         if str_key[i] == "0":
@@ -41,10 +41,6 @@ def sbox_1():
             key_temp = letter_list[0]
 
         key_next = key_next + key_temp
+        key_next_hex = int(key_next, 16)
 
-    # hex_ = hex(key_next[0] + key_next[1] + key_next[2] + key_next[3])
-    print(type(key_next))
-    # print(hex_)
-
-
-sbox_1()
+        return key_next_hex
