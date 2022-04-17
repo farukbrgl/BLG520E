@@ -21,7 +21,7 @@ def cipher_1():
                                sbox_1, permutation_1_2)
 
     ciphertext = plaintext_next
-    print(key_next)
+    print(hex(ciphertext))
     return ciphertext
 
 
@@ -33,7 +33,7 @@ def cipher_2():
                                sbox_1, permutation_1_2)
 
     ciphertext = plaintext_next
-    print(key_next)
+    print(hex(ciphertext))
     return ciphertext
 
 
@@ -45,7 +45,7 @@ def cipher_3():
                                sbox_1, permutation_1_2)
 
     ciphertext = plaintext_next
-    print(key_next)
+    print(hex(ciphertext))
     return ciphertext
 
 
