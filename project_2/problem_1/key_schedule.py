@@ -1,6 +1,6 @@
 def key_schedule(key):
     key_shifted = key >> 1
-    key_str = str(bin(key))
+    key_str = str(bin(key)).zfill(16)
     key_0 = int(key_str[-1])
     key_2 = int(key_str[-3])
     key_4 = int(key_str[-5])

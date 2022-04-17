@@ -9,46 +9,41 @@ from round import round
 # sbox_2_3(0xabcd)
 # permutation_1_2(0x1111)
 
-plaintext = 0xabcd
-key = 0xabcd
+plaintext = 0x0000
+key = 0x0000
 
 
-def cipher_1():
-    plaintext_next = round(key, plaintext, sbox_1, permutation_1_2)
-    for i in range(4):
-        key_next = key_schedule(key)
-        plaintext_next = round(key_next, plaintext_next,
-                               sbox_1, permutation_1_2)
-
+def cipher_1(plaintext, key):
+    for i in range(3):
+        key = key_schedule(key)
+        plaintext_next = round(key, plaintext, sbox_1, permutation_1_2)
+        print(round.sbox.str_key)
     ciphertext = plaintext_next
-    print(hex(ciphertext))
+    print(ciphertext)
+
     return ciphertext
 
 
-def cipher_2():
-    plaintext_next = round(key, plaintext, sbox_2_3, permutation_1_2)
-    for i in range(4):
-        key_next = key_schedule(key)
-        plaintext_next = round(key_next, plaintext_next,
-                               sbox_1, permutation_1_2)
+def cipher_2(plaintext, key):
+    for i in range(3):
+        key = key_schedule(key)
+        plaintext = round(key, plaintext, sbox_2_3, permutation_1_2)
 
-    ciphertext = plaintext_next
-    print(hex(ciphertext))
+    ciphertext = plaintext
+    print(ciphertext)
     return ciphertext
 
 
-def cipher_3():
-    plaintext_next = round(key, plaintext, sbox_2_3, permutation_3)
-    for i in range(4):
-        key_next = key_schedule(key)
-        plaintext_next = round(key_next, plaintext_next,
-                               sbox_1, permutation_1_2)
+def cipher_3(plaintext, key):
+    for i in range(3):
+        key = key_schedule(key)
+        plaintext = round(key, plaintext, sbox_2_3, permutation_3)
 
-    ciphertext = plaintext_next
-    print(hex(ciphertext))
+    ciphertext = plaintext
+    print(ciphertext)
     return ciphertext
 
 
-cipher_1()
-cipher_2()
-cipher_3()
+cipher_1(plaintext, key)
+cipher_2(plaintext, key)
+cipher_3(plaintext, key)
