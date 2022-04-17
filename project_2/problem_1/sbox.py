@@ -52,7 +52,7 @@ def sbox_2_3(key):
     # key_list = list(map(str, str(hex(key)[2:].zfill(4))))
     letter_list = "0123456789abcdef"
     key_next = ""
-    print(str_key)
+    # print(str_key)
 
     for i in range(4):
         if str_key[i] == "0":
@@ -90,5 +90,5 @@ def sbox_2_3(key):
 
         key_next = key_next + key_temp
     key_next_hex = int(key_next, 16)
-    print(hex(key_next_hex))
+    # print(hex(key_next_hex))
     return key_next_hex
